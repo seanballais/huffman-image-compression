@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/huffman-image-compression.iml" filepath="$PROJECT_DIR$/.idea/modules/huffman-image-compression.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/huffman-image-compression_main.iml" filepath="$PROJECT_DIR$/.idea/modules/huffman-image-compression_main.iml" group="huffman-image-compression" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/huffman-image-compression_test.iml" filepath="$PROJECT_DIR$/.idea/modules/huffman-image-compression_test.iml" group="huffman-image-compression" />
+    </modules>
+  </component>
+</project>
