@@ -18,9 +18,15 @@ public class HuffmanDistribution
         distribution = new HashMap<>();
     }
 
-    public void generateDistribution(String distributionFile) throws IOException
+    public void generateDistributionFromFile(String distributionFile) throws IOException
     {
         parseFile(distributionFile);
+    }
+
+    public void updateDistribution(int colorValue, int frequency)
+    {
+        int colorFrequency = (distribution.get(colorValue) != null) ? distribution.get(colorValue) : 0;
+        distribution.put(colorValue, frequency + colorFrequency);
     }
 
     public PriorityQueue<HuffmanNode> getPrioritizedDistribution()
