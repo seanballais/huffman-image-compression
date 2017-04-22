@@ -57,7 +57,7 @@ public class HuffmanNode
         return colorValue;
     }
 
-    public boolean isLeaf()
+    public boolean isALeaf()
     {
         return (leftChild == null) && (rightChild == null);
     }

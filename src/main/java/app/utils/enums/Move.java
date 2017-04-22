@@ -1,6 +1,6 @@
 package app.utils.enums;
 
-public enum MovementDirection
+public enum Move
 {
     LEFT, RIGHT
 }
