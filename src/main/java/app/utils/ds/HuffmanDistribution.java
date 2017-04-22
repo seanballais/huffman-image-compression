@@ -25,7 +25,22 @@ public class HuffmanDistribution
 
     public PriorityQueue<HuffmanNode> getPrioritizedDistribution()
     {
+        int initCapacity = distribution.size();
+        return createHuffmanQueue(
+            new PriorityQueue<>(initCapacity, (h1, h2) -> (int) (h1.getFrequency() - h2.getFrequency()))
+        );
+    }
 
+    private PriorityQueue<HuffmanNode> createHuffmanQueue(PriorityQueue<HuffmanNode> nodes)
+    {
+        for (HashMap.Entry<Integer, Integer> entry : distribution.entrySet()) {
+            int colorValue = entry.getKey();
+            int frequency = entry.getValue();
+
+            nodes.add(new HuffmanNode(colorValue, frequency));
+        }
+
+        return nodes;
     }
 
     private void parseFile(String distributionFile) throws IOException
