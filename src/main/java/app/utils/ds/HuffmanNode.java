@@ -57,6 +57,11 @@ public class HuffmanNode
         return colorValue;
     }
 
+    public boolean isLeaf()
+    {
+        return (leftChild == null) && (rightChild == null);
+    }
+
     public int getFrequency()
     {
         return frequency;
