@@ -2,7 +2,7 @@ package app.utils.ds;
 
 import app.utils.enums.MovementDirection;
 
-import java.util.HashMap;
+import java.util.PriorityQueue;
 
 public class HuffmanTree
 {
@@ -19,13 +19,13 @@ public class HuffmanTree
         return root;
     }
 
-    public void generateTree(HashMap<Integer, Integer> distribution)
+    public void generateTree(PriorityQueue<HuffmanNode> distribution)
     {
 
     }
 
     public HuffmanNode moveNode(MovementDirection direction)
     {
-        
+
     }
 }
