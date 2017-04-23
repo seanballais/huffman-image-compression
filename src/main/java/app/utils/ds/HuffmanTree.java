@@ -111,7 +111,7 @@ public class HuffmanTree
             bitString.setLength(0);
         } else {
             if (currentNode.getLeftChild() != null) {
-                generateBitStrings(bitStrings, bitString.append('0'), currentNode.getLeftChild())
+                generateBitStrings(bitStrings, bitString.append('0'), currentNode.getLeftChild());
             }
 
             if (currentNode.getRightChild() != null) {
