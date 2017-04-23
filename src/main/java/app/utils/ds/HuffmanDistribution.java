@@ -137,7 +137,7 @@ public class HuffmanDistribution
             String[] lineValues = line.split("=");
             int key = Integer.parseInt(lineValues[0]);
             int value = Integer.parseInt(lineValues[1]);
-            distribution.put(key, value);
+            updateDistribution(key, value);
         } else {
             throw new FileFormatException("Invalid Huffman file. File must not contain letters or symbols except '='.");
         }
