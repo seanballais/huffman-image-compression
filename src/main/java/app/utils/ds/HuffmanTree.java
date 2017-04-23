@@ -18,8 +18,7 @@
 
 package app.utils.ds;
 
-import app.utils.enums.Move;
-
+import java.util.HashMap;
 import java.util.PriorityQueue;
 
 /**
@@ -44,12 +43,7 @@ import java.util.PriorityQueue;
 public class HuffmanTree
 {
     private HuffmanNode root;
-
-    /*
-     * Node that holds the recently traversed node when moving through
-     * tree.
-     */
-    private HuffmanNode currentNode;
+    private HashMap<Integer, String> bitStrings;
 
     /**
      * Constructs a new <tt>HuffmanTree</tt> with an empty root.
@@ -57,7 +51,8 @@ public class HuffmanTree
     public HuffmanTree()
     {
         root = new HuffmanNode(0, 0);
-        currentNode = root;
+
+        bitStrings = new HashMap<>();
     }
 
     /**
@@ -92,25 +87,37 @@ public class HuffmanTree
                 root = nodes.remove();
             }
         }
+
+        generateBitStrings(this.bitStrings, new StringBuilder(), root);
     }
 
     /**
-     * Moves to another node and returns it. Moves to
-     * the root of the tree if the current node is a leaf.
+     * Returns a <tt>HashMap</tt> containing the bit string representation
+     * of the color values with respect to the Huffman tree.
      *
-     * @param  direction
-     *         Direction of the movement of the tree. The value is
-     *         either <tt>Move.LEFT</tt> or <tt>Move.RIGHT</tt>.
-     * @return the current node that is moved to.
-     * @see    Move
+     * @return a <tt>HashMap</tt> containing the bit string representation
+     *         of the color values with respect to the Huffman tree.
+     * @see    HashMap
      */
-    public HuffmanNode moveNode(Move direction)
+    public HashMap<Integer, String> getBitStrings()
     {
-        currentNode = (currentNode.isALeaf()) ? root : currentNode;
-        currentNode = (direction == Move.LEFT) ? currentNode.getLeftChild() : currentNode.getRightChild();
-        HuffmanNode retrievedNode = currentNode;
+        return bitStrings;
+    }
 
-        return retrievedNode;
+    private void generateBitStrings(HashMap<Integer, String> bitStrings, StringBuilder bitString, HuffmanNode currentNode)
+    {
+        if (currentNode.isALeaf()) {
+            bitStrings.put(currentNode.getColorValue(), bitString.toString());
+            bitString.setLength(0);
+        } else {
+            if (currentNode.getLeftChild() != null) {
+                generateBitStrings(bitStrings, bitString.append('0'), currentNode.getLeftChild())
+            }
+
+            if (currentNode.getRightChild() != null) {
+                generateBitStrings(bitStrings, bitString.append('1'), currentNode.getRightChild());
+            }
+        }
     }
 
     private HuffmanNode createSubtree(HuffmanNode node1, HuffmanNode node2)

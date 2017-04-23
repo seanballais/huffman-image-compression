@@ -133,7 +133,9 @@ public class HuffmanDistribution
 
     private void processLine(String line) throws FileFormatException
     {
-        if (isValidLine(line)) {
+        if (isCommentLine(line) || isEmptyLine(line)) {
+            // Do nothing.
+        } else if (isValidLine(line)) {
             String[] lineValues = line.split("=");
             int key = Integer.parseInt(lineValues[0]);
             int value = Integer.parseInt(lineValues[1]);
@@ -145,6 +147,10 @@ public class HuffmanDistribution
 
     private boolean isValidLine(String line)
     {
-        return line.matches("^(( +)?\\d+( +)?=( +)?\\d+( +)?)$");
+        return line.matches("^((\\s+)?\\d+(\\s+)?=(\\s+)?\\d+(\\s+)?)$");
     }
+
+    private boolean isCommentLine(String line) { return line.matches("^(((\\s)+)?\\/\\/.*)$"); }
+
+    private boolean isEmptyLine(String line) { return line.matches("^(\\s*)$")}
 }
