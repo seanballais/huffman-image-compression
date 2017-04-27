@@ -51,7 +51,6 @@ public class HuffmanTree
     public HuffmanTree()
     {
         root = new HuffmanNode(0, 0);
-
         bitStrings = new HashMap<>();
     }
 
