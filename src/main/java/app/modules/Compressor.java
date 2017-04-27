@@ -28,7 +28,6 @@ import java.awt.image.DataBufferInt;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.IntStream;
@@ -67,8 +66,8 @@ public class Compressor
      * a Huffman Trainer.
      *
      * @param  distributionFile The outputted distribution file by a Huffman Trainer.
-     * @throws IOException if something went wrong while reading a file, or the file
-     *                     doesn't exist.
+     * @throws IOException      if something went wrong while reading a file, or the file
+     *                          doesn't exist.
      * @see    Trainer
      */
     public void generateDistributionFromFile(String distributionFile) throws IOException
@@ -114,12 +113,7 @@ public class Compressor
      */
     public void compressImage(String imageFile, String outputDirectory, String outputFilename) throws IOException
     {
-        BufferedImage image;
-        try {
-            image = ImageIO.read(new File(imageFile));
-        } catch (IOException iex) {
-            throw new IOException("Error while reading image. Make sure it exists.");
-        }
+        BufferedImage image = ImageIO.read(new File(imageFile));
 
         ArrayList<Byte> compressedImage = new ArrayList<>();
         setFourBytesForDimension(compressedImage, image.getWidth());
@@ -189,7 +183,7 @@ public class Compressor
     private void setFourBytesForDimension(ArrayList<Byte> compressedImage, int dimension)
     {
         for (int i = 0; i < 4; i++) {
-            // Remember that integers 4 bytes long.
+            // Remember that integers are 4 bytes long.
             compressedImage.add((byte) ((dimension >> (8 * (3 - i))) & 0xFF));
         }
     }
