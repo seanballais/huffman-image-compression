@@ -156,7 +156,7 @@ public class Compressor
             Color c = new Color(imagePixel);
             int pixelColor = ((c.getRed() << 24) & 0xFF000000) |((c.getGreen() << 16) & 0x00FF0000) |
                              ((c.getBlue() << 8) & 0x0000FF00) | ((c.getAlpha()) & 0x000000FF);
-            String coClorBitString = bitStrings.get(pixelColor);
+            String colorBitString = bitStrings.get(pixelColor);
 
             if (offsetCount == 7) {
                 compressedImage.add((byte) 0);
