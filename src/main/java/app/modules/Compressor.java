@@ -83,23 +83,6 @@ public class Compressor
     }
 
     /**
-     * Add a new color value or update a present color value with a specified
-     * frequency. If the color value is already present, the frequency of the color
-     * value is incremented by the specified frequency.
-     *
-     * @param colorValue The color value to be added, or updated.
-     * @param frequency
-     *        The frequency of the new color value, or the number to be added
-     *        to the frequency of the existing color value specified.
-     */
-    public void updateDistribution(int colorValue, int frequency)
-    {
-        distribution.updateDistribution(colorValue, frequency);
-        tree.generateTree(distribution);
-        bitStrings = tree.getBitStrings();
-    }
-
-    /**
      * Compress a specified image and input it into an output file. The output file
      * has an extension of .pnb. No need to append a slash in the <tt>outputDirectory</tt>
      * string. The directory is automatically appended with a forward slash when saving

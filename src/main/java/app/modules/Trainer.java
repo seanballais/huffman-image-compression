@@ -1,7 +1,14 @@
 package app.modules;
 
-/**
- * Created by seanballais on 4/27/17.
- */
-public class Trainer {
+import app.utils.ds.HuffmanDistribution;
+
+public class Trainer
+{
+    private HuffmanDistribution distribution;
+
+    public Trainer();
+    public void outputToFile(String target);
+    public void trainFromImage(String imagePath);
+    public void getDistributionFromFile(String distributionFile);
+    private void updateDistribution(int colorValue, int frequency);
 }
