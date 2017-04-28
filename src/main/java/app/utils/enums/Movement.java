@@ -1,4 +1,3 @@
-
 /*
  * Huffman Image Compression
  * Copyright (C) 2017  Sean Ballais, Kenn Pulma
