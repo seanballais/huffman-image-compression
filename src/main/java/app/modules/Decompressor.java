@@ -18,6 +18,7 @@
 
 package app.modules;
 
+import app.utils.Utils;
 import app.utils.ds.HuffmanDistribution;
 import app.utils.ds.HuffmanNode;
 import app.utils.ds.HuffmanTree;
@@ -26,9 +27,7 @@ import app.utils.enums.Movement;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 /**
  * The decompressor is responsible for converting a compressed image using a Huffman Tree to
@@ -81,9 +80,13 @@ public class Decompressor
      *                     the decompressed image.
      * @throws IOException if something went wrong while reading the file, or it does not exist.
      */
-    public BufferedImage decompress(String source) throws IOException
+    public BufferedImage decompress(String sourceFile) throws IOException
     {
-        Path sourcePath = Paths.get(source);
+        if (!Utils.isFileExtensionValid("pnb", sourceFile)) {
+            throw new IOException("File extension should be '.pnb'.");
+        }
+
+        Path sourcePath = Paths.get(sourceFile);
         byte[] imageBytes = Files.readAllBytes(sourcePath);
 
         int width = getDimension(imageBytes, 0);

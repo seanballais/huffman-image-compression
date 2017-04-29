@@ -18,6 +18,7 @@
 
 package app.modules;
 
+import app.utils.Utils;
 import app.utils.ds.HuffmanDistribution;
 
 import javax.imageio.ImageIO;
@@ -61,13 +62,16 @@ public class Trainer
      * Save the Huffman Distribution file that can be used to compress and
      * decompress images.
      *
-     * @param  target      The target file to save the distribution data.
+     * @param  targetDir   The target file to save the distribution data.
      * @throws IOException if something went wrong while reading the file,
      *                     or the file does not exist.
      */
-    public void saveToFile(String target) throws IOException
+    public void saveToFile(String targetDir) throws IOException
     {
-        FileWriter fileWriter = new FileWriter(target);
+        File targetFile = new File(targetDir + "trained_data.huff");
+        targetFile.createNewFile();
+
+        FileWriter fileWriter = new FileWriter(targetFile);
         fileWriter.write(setFileContents());
     }
 
@@ -80,6 +84,10 @@ public class Trainer
      */
     public void trainFromImage(String imageFile) throws IOException
     {
+        if (!Utils.isFileExtensionValid("png", imageFile)) {
+            throw new IOException("File extension should be '.png'.");
+        }
+
         BufferedImage image = ImageIO.read(new File(imageFile));
         int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
         for (int pixel : pixels) {

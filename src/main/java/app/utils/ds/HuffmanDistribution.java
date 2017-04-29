@@ -18,12 +18,17 @@
 
 package app.utils.ds;
 
+import app.utils.Utils;
 import app.utils.exceptions.FileFormatException;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.PathMatcher;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -68,6 +73,10 @@ public class HuffmanDistribution
      */
     public void generateDistributionFromFile(String distributionFile) throws IOException
     {
+        if (!Utils.isFileExtensionValid("huff", distributionFile)) {
+            throw new IOException("File extension should be '.huff'.");
+        }
+
         parseFile(distributionFile);
     }
 

@@ -72,12 +72,7 @@ public class Compressor
      */
     public void generateDistributionFromFile(String distributionFile) throws IOException
     {
-        try {
-            distribution.generateDistributionFromFile(distributionFile);
-        } catch (IOException iex) {
-            throw new IOException("Error while reading file. Make sure it exists.");
-        }
-
+        distribution.generateDistributionFromFile(distributionFile);
         tree.generateTree(distribution);
         bitStrings = tree.getBitStrings();
     }

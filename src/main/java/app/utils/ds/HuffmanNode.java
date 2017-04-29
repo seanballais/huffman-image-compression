@@ -68,7 +68,6 @@ public class HuffmanNode
         this.parent = parent;
     }
 
-
     /**
      * Set the left child of this Huffman node. The value can be null.
      *
