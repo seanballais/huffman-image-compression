@@ -88,7 +88,12 @@ public class Trainer
             throw new IOException("File extension should be '.png'.");
         }
 
-        BufferedImage image = ImageIO.read(new File(imageFile));
+        BufferedImage tmpImage = ImageIO.read(new File(imageFile));
+        BufferedImage image = new BufferedImage(
+            tmpImage.getWidth(), tmpImage.getHeight(), BufferedImage.TYPE_INT_ARGB
+        ); // Ew! Might as well be an ugly hack. :P
+        image.getGraphics().drawImage(tmpImage, 0, 0, null);
+
         int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
         for (int pixel : pixels) {
             Color c = new Color(pixel);

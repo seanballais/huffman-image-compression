@@ -18,6 +18,8 @@
 
 package app.utils;
 
+import com.sun.deploy.util.StringUtils;
+
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
@@ -33,16 +35,16 @@ public class Utils
      * Checks if the file extension in a file matches with the one specified.
      *
      * @param fileExtension The specified file extension the file must have.
-     * @param file          The file to be checked.
+     * @param filePath          The file to be checked.
      * @return              true if the file has the specified file extension,
      *                      false otherwise.
      */
-    public static boolean isFileExtensionValid(String fileExtension, String file)
+    public static boolean isFileExtensionValid(String fileExtension, String filePath)
     {
-        PathMatcher matcher =
-                FileSystems.getDefault().getPathMatcher("glob:*." + fileExtension);
-        Path filePath = Paths.get(file);
+        String upperCaseExt = fileExtension.toUpperCase();
+        String lowerCaseExt = fileExtension.toLowerCase();
+        String extension = filePath.substring(filePath.lastIndexOf(".") + 1, filePath.length());
 
-        return matcher.matches(filePath);
+        return extension.equals(upperCaseExt) || extension.equals(lowerCaseExt);
     }
 }

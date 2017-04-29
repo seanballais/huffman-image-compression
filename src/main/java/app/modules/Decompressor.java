@@ -75,7 +75,7 @@ public class Decompressor
      * Decompress the compressed image and return a <tt>BufferedImage</tt> containing
      * the pixel values of the decompressed image.
      *
-     * @param source       The compressed image.
+     * @param  sourceFile  The compressed image.
      * @return             a <tt>BufferedImage</tt> containing the pixel values of
      *                     the decompressed image.
      * @throws IOException if something went wrong while reading the file, or it does not exist.
