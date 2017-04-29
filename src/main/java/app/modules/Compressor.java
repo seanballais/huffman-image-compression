@@ -127,12 +127,12 @@ public class Compressor
 
     private void processPixels(ArrayList<Byte> compressedImage, BufferedImage image)
     {
-        int[] imagePixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+        int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
         int offsetCount = 7;
-        for (int imagePixel : imagePixels) {
-            Color c = new Color(imagePixel);
-            int pixelColor = ((c.getRed() << 24) & 0xFF000000) |((c.getGreen() << 16) & 0x00FF0000) |
-                             ((c.getBlue() << 8) & 0x0000FF00) | ((c.getAlpha()) & 0x000000FF);
+        for (int pixel : pixels) {
+            Color c = new Color(pixel);
+            int pixelColor = ((c.getRed() << 24) & 0xFF000000) | ((c.getGreen() << 16) & 0x00FF0000) |
+                             ((c.getBlue() << 8) & 0x0000FF00) | (c.getAlpha() & 0x000000FF);
             String colorBitString = bitStrings.get(pixelColor);
 
             if (offsetCount == 7) {

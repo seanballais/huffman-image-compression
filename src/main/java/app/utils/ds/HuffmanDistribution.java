@@ -102,6 +102,16 @@ public class HuffmanDistribution
         );
     }
 
+    /**
+     * Returns a <tt>HashMap</tt> containing the distribution of colors of a set of images.
+     *
+     * @return a <tt>HashMap</tt> containing the distribution of colors of a set of images.
+     */
+    public HashMap<Integer, Integer> getDistribution()
+    {
+        return distribution;
+    }
+
     private PriorityQueue<HuffmanNode> createHuffmanQueue(PriorityQueue<HuffmanNode> nodes)
     {
         for (HashMap.Entry<Integer, Integer> entry : distribution.entrySet()) {
