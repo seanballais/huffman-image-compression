@@ -106,6 +106,10 @@ public class HuffmanDistribution
     public PriorityQueue<HuffmanNode> getPrioritizedDistribution()
     {
         int initCapacity = distribution.size();
+        if (initCapacity == 0) {
+            initCapacity = 1;
+        }
+
         return createHuffmanQueue(
             new PriorityQueue<>(initCapacity, (h1, h2) -> (int) (h1.getFrequency() - h2.getFrequency()))
         );
@@ -152,11 +156,13 @@ public class HuffmanDistribution
 
     private void processLine(String line) throws FileFormatException
     {
-        if (isValidLine(line) && (!isCommentLine(line) || !isEmptyLine(line))) {
-            String[] lineValues = line.split("=");
-            int key = Integer.parseInt(lineValues[0]);
-            int value = Integer.parseInt(lineValues[1]);
-            updateDistribution(key, value);
+        if (!isCommentLine(line) || !isEmptyLine(line)) {
+            if (isValidLine(line)) {
+                String[] lineValues = line.split("|");
+                int key = Integer.parseInt(lineValues[0]);
+                int value = Integer.parseInt(lineValues[1]);
+                updateDistribution(key, value);
+            }
         } else {
             throw new FileFormatException("Invalid Huffman file. File must not contain letters or symbols except '='.");
         }
@@ -164,7 +170,7 @@ public class HuffmanDistribution
 
     private boolean isValidLine(String line)
     {
-        return line.matches("^((\\s+)?\\d+(\\s+)?=(\\s+)?\\d+(\\s+)?)$");
+        return line.matches("^((\\s+)?\\d+(\\s+)?\\|(\\s+)?\\d+(\\s+)?)$");
     }
 
     private boolean isCommentLine(String line) { return line.matches("^(((\\s)+)?\\/\\/.*)$"); }

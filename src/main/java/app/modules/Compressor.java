@@ -122,7 +122,11 @@ public class Compressor
 
     private void processPixels(ArrayList<Byte> compressedImage, BufferedImage image)
     {
-        int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+        BufferedImage tmpImage = new BufferedImage(
+                image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB
+        ); // Ew! Might as well be an ugly hack. :P
+        tmpImage.getGraphics().drawImage(tmpImage, 0, 0, null);
+        int[] pixels = ((DataBufferInt) tmpImage.getRaster().getDataBuffer()).getData();
         int offsetCount = 7;
         for (int pixel : pixels) {
             Color c = new Color(pixel);

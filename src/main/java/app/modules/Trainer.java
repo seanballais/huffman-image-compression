@@ -139,7 +139,7 @@ public class Trainer
     {
         Iterator distributionIter = distribution.getDistribution().entrySet().iterator();
         StringBuilder fileContents = new StringBuilder();
-        fileContents.append("// WARNING! Do not modify if you do now what you are doing.");
+        fileContents.append("// WARNING! Do not modify if you do not know what you are doing.\n");
         while (distributionIter.hasNext()) {
             HashMap.Entry pair = (HashMap.Entry) distributionIter.next();
             createFileLine(fileContents, pair.getKey().toString(), pair.getValue().toString());
@@ -153,7 +153,7 @@ public class Trainer
     private void createFileLine(StringBuilder stringBuilder, String key, String value)
     {
         stringBuilder.append(key);
-        stringBuilder.append("-");
+        stringBuilder.append("|");
         stringBuilder.append(value);
         stringBuilder.append("\n");
     }
