@@ -59,16 +59,6 @@ public class HuffmanTree
     }
 
     /**
-     * Returns the root of the <tt>HuffmanTree</tt>.
-     *
-     * @return the root of the <tt>HuffmanTree</tt>.
-     */
-    public HuffmanNode getRoot()
-    {
-        return root;
-    }
-
-    /**
      * Generates a tree based on a Huffman distribution containing the
      * color values that map to the frequency of the said color value.
      * This must be called every time the huffman distribution of the
@@ -91,7 +81,7 @@ public class HuffmanTree
             }
         }
 
-        generateBitStrings(this.bitStrings, new StringBuilder(), root);
+        generateBitStrings(this.bitStrings, "", root);
     }
 
     /**
@@ -128,20 +118,19 @@ public class HuffmanTree
         return retrievedNode;
     }
 
-    private void generateBitStrings(HashMap<Integer, String> bitStrings, StringBuilder bitString, HuffmanNode currentNode)
+    private void generateBitStrings(HashMap<Integer, String> bitStrings, String bitString, HuffmanNode currentNode)
     {
-        if (currentNode.isALeaf()) {
-            bitStrings.put(currentNode.getColorValue(), bitString.toString());
-            bitString.setLength(0);
-        } else {
+        if (!currentNode.isALeaf()) {
             if (currentNode.getLeftChild() != null) {
-                generateBitStrings(bitStrings, bitString.append('0'), currentNode.getLeftChild());
+                generateBitStrings(bitStrings, bitString + '0', currentNode.getLeftChild());
             }
 
             if (currentNode.getRightChild() != null) {
-                generateBitStrings(bitStrings, bitString.append('1'), currentNode.getRightChild());
+                generateBitStrings(bitStrings, bitString + '1', currentNode.getRightChild());
             }
         }
+
+        bitStrings.put(currentNode.getColorValue(), bitString);
     }
 
     private HuffmanNode createSubtree(HuffmanNode node1, HuffmanNode node2)
