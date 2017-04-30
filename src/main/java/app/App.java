@@ -16,17 +16,17 @@ public class App
         long startTime = System.currentTimeMillis();
         Trainer trainer = new Trainer();
         try {
-            trainer.trainFromImage("/home/seanballais/Pictures/Misc/lena1.png");
+            trainer.trainFromImage("/home/seanballais/Pictures/Misc/doggo.png");
             trainer.saveToFile("/home/seanballais/Pictures/Misc/");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        Compressor compressor = new Compressor();
+        /*Compressor compressor = new Compressor();
         try {
             compressor.generateDistributionFromFile("/home/seanballais/Pictures/Misc/trained_data.huff");
             compressor.compressImage(
-                "/home/seanballais/Pictures/Misc/lena1.png",
+                "/home/seanballais/Pictures/Misc/doggo.png",
                 "/home/seanballais/Pictures/Misc/",
                 "outputImg"
             );
@@ -40,11 +40,11 @@ public class App
             distribution.generateDistributionFromFile("/home/seanballais/Pictures/Misc/trained_data.huff");
             decompressor.generateTree(distribution);
             BufferedImage imageResult = decompressor.decompress("/home/seanballais/Pictures/Misc/outputImg.pnb");
-            File outputFile = new File("/home/seanballais/Pictures/Misc/lena1-result.png");
+            File outputFile = new File("/home/seanballais/Pictures/Misc/doggo-result.png");
             ImageIO.write(imageResult, "png", outputFile);
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
 
         System.out.println("Total execution time: " + (System.currentTimeMillis() - startTime));
     }
