@@ -18,6 +18,7 @@
 
 package app.modules;
 
+import app.utils.Utils;
 import app.utils.ds.HuffmanDistribution;
 import app.utils.ds.HuffmanTree;
 
@@ -123,15 +124,14 @@ public class Compressor
     private void processPixels(ArrayList<Byte> compressedImage, BufferedImage image)
     {
         BufferedImage tmpImage = new BufferedImage(
-                image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB
+            image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB
         ); // Ew! Might as well be an ugly hack. :P
-        tmpImage.getGraphics().drawImage(tmpImage, 0, 0, null);
+        tmpImage.getGraphics().drawImage(image, 0, 0, null);
         int[] pixels = ((DataBufferInt) tmpImage.getRaster().getDataBuffer()).getData();
         int offsetCount = 7;
         for (int pixel : pixels) {
             Color c = new Color(pixel);
-            int pixelColor = ((c.getRed() << 24) & 0xFF000000) | ((c.getGreen() << 16) & 0x00FF0000) |
-                             ((c.getBlue() << 8) & 0x0000FF00) | (c.getAlpha() & 0x000000FF);
+            int pixelColor = Utils.colorToRGBA(c);
             String colorBitString = bitStrings.get(pixelColor);
 
             if (offsetCount == 7) {
@@ -147,7 +147,7 @@ public class Compressor
 
     private void processBit(ArrayList<Byte> compressedImage, int offset, String bitString, int bitIndex)
     {
-        byte currByte = compressedImage.get(compressedImage.size());
+        byte currByte = compressedImage.get(compressedImage.size() - 1);
         char bit = bitString.charAt(bitIndex);
         if (bit == '1') {
             currByte = (byte) (currByte | ((1 << offset) & 0xFF));
@@ -157,7 +157,7 @@ public class Compressor
             // Our bits have ran out! Better add a new one to the
             // array list and use it to store the additional bits in
             // the bit string.
-            compressedImage.set(compressedImage.size(), currByte);
+            compressedImage.set(compressedImage.size() - 1, currByte);
             compressedImage.add((byte) 0);
         }
     }

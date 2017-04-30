@@ -72,7 +72,7 @@ public class Trainer
         targetFile.createNewFile();
 
         FileWriter fileWriter = new FileWriter(targetFile);
-        fileWriter.write(setFileContents());
+        fileWriter.write(createFileContents());
     }
 
     /**
@@ -97,8 +97,7 @@ public class Trainer
         int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
         for (int pixel : pixels) {
             Color c = new Color(pixel);
-            int pixelColor = ((c.getRed() << 24) & 0xFF000000) | ((c.getGreen() << 16) & 0x00FF0000) |
-                             ((c.getBlue() << 8) & 0x0000FF00) | (c.getAlpha() & 0x000000FF);
+            int pixelColor = Utils.colorToRGBA(c);
             updateDistribution(pixelColor);
         }
     }
@@ -135,7 +134,7 @@ public class Trainer
         distribution.updateDistribution(colorValue, 1);
     }
 
-    private String setFileContents()
+    private String createFileContents()
     {
         Iterator distributionIter = distribution.getDistribution().entrySet().iterator();
         StringBuilder fileContents = new StringBuilder();

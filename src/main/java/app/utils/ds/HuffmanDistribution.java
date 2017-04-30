@@ -158,9 +158,10 @@ public class HuffmanDistribution
     {
         if (!isCommentLine(line) || !isEmptyLine(line)) {
             if (isValidLine(line)) {
-                String[] lineValues = line.split("|");
+                String[] lineValues = line.split("\\|");
                 int key = Integer.parseInt(lineValues[0]);
                 int value = Integer.parseInt(lineValues[1]);
+
                 updateDistribution(key, value);
             }
         } else {
@@ -170,7 +171,7 @@ public class HuffmanDistribution
 
     private boolean isValidLine(String line)
     {
-        return line.matches("^((\\s+)?\\d+(\\s+)?\\|(\\s+)?\\d+(\\s+)?)$");
+        return line.matches("^((\\s+)?(-)?\\d+(\\s+)?\\|(\\s+)?\\d+(\\s+)?)$");
     }
 
     private boolean isCommentLine(String line) { return line.matches("^(((\\s)+)?\\/\\/.*)$"); }

@@ -15,7 +15,7 @@ public class App
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+/*
         Compressor compressor = new Compressor();
         try {
             compressor.generateDistributionFromFile("/home/seanballais/trained_data.huff");
@@ -26,7 +26,7 @@ public class App
             );
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
 
         System.out.println("Total execution time: " + (System.currentTimeMillis() - startTime));
     }

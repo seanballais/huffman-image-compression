@@ -20,6 +20,7 @@ package app.utils;
 
 import com.sun.deploy.util.StringUtils;
 
+import java.awt.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
@@ -46,5 +47,18 @@ public class Utils
         String extension = filePath.substring(filePath.lastIndexOf(".") + 1, filePath.length());
 
         return extension.equals(upperCaseExt) || extension.equals(lowerCaseExt);
+    }
+
+    /**
+     * Convert a <tt>Color</tt> object into its RGBA integer value and return said value.
+     *
+     * @param  c Color object to be converted to RGBA.
+     * @return   The RGBA integer value of the specified Color object.
+     * @see      Color
+     */
+    public static int colorToRGBA(Color c)
+    {
+        return ((c.getRed() << 24) & 0xFF000000) | ((c.getGreen() << 16) & 0x00FF0000) |
+               ((c.getBlue() << 8) & 0x0000FF00) | (c.getAlpha() & 0x000000FF);
     }
 }
