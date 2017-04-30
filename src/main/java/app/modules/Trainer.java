@@ -73,6 +73,8 @@ public class Trainer
 
         FileWriter fileWriter = new FileWriter(targetFile);
         fileWriter.write(createFileContents());
+        fileWriter.flush();
+        fileWriter.close();
     }
 
     /**
