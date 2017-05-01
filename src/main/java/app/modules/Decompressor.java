@@ -135,11 +135,14 @@ public class Decompressor
     private void processLeaf(BufferedImage resultingImage, HuffmanNode currentNode, Point currentPoint, int width, int height)
     {
         int colorValue = RGBAToARGB(currentNode.getColorValue());
+        //System.out.println("Current color: " + colorValue);
+        //System.out.println("Current point: (" + currentPoint.x + ", " + currentPoint.y + ")");
         resultingImage.setRGB(currentPoint.x, currentPoint.y, colorValue);
 
         currentPoint.setLocation(++currentPoint.x, currentPoint.y);
-        if (currentPoint.x == width) { currentPoint.setLocation(0, currentPoint.y++); }
-        else { currentPoint.setLocation(currentPoint.x++, currentPoint.y); }
+        if (currentPoint.x == width) { currentPoint.setLocation(0, ++currentPoint.y); }
+
+        //System.out.println("Current point (modified): (" + currentPoint.x + ", " + currentPoint.y + ")");
     }
 
     private int RGBAToARGB(int colorValue)
@@ -149,7 +152,7 @@ public class Decompressor
 
     private int getDimension(byte[] data, int start)
     {
-        return ((int) data[start] << 24) | ((int) data[start + 1] << 16) |
-               ((int) data[start + 2] << 8) | ((int) data[start + 3]);
+        return ((data[start] & 0xFF) << 24) | ((data[start + 1] & 0xFF) << 16) |
+               ((data[start + 2] & 0xFF) << 8) | (data[start + 3] & 0xFF);
     }
 }

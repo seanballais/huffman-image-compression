@@ -21,6 +21,7 @@ package app.utils.ds;
 import app.utils.enums.Movement;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 
 /**
@@ -81,7 +82,7 @@ public class HuffmanTree
             }
         }
 
-        generateBitStrings(this.bitStrings, "", root);
+        generateBitStrings(bitStrings, "", root);
     }
 
     /**
