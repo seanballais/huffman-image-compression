@@ -23,7 +23,7 @@ public class App
             trainer.saveToFile("/home/seanballais/Documents/School/UPVTC/2nd Year - Second Sem/CMSC 123/Machine Problems/huffman-image-compression/test_grounds/");
         } catch (Exception ex) {
             ex.printStackTrace();
-        }*/
+        }
 
         Compressor compressor = new Compressor();
         try {
@@ -35,9 +35,9 @@ public class App
             );
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
 
-        /*Decompressor decompressor = new Decompressor();
+        Decompressor decompressor = new Decompressor();
         HuffmanDistribution distribution = new HuffmanDistribution();
         try {
             distribution.generateDistributionFromFile("/home/seanballais/Documents/School/UPVTC/2nd Year - Second Sem/CMSC 123/Machine Problems/huffman-image-compression/test_grounds/trained_data.huff");
@@ -47,7 +47,7 @@ public class App
             ImageIO.write(imageResult, "png", outputFile);
         } catch (Exception ex) {
             ex.printStackTrace();
-        }*/
+        }
 
         System.out.println("Total execution time: " + (System.currentTimeMillis() - startTime));
     }
