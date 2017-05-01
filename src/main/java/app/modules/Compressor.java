@@ -140,7 +140,7 @@ public class Compressor
 
             for (int j = 0; j < colorBitString.length(); j++) {
                 processBit(compressedImage, offsetCount, colorBitString, j);
-                offsetCount = --offsetCount % 8;
+                offsetCount = Math.floorMod(--offsetCount, 8);
             }
         }
     }
@@ -150,14 +150,15 @@ public class Compressor
         byte currByte = compressedImage.get(compressedImage.size() - 1);
         char bit = bitString.charAt(bitIndex);
         if (bit == '1') {
-            currByte = (byte) (currByte | ((1 << offset) & 0xFF));
+            currByte = (byte) (currByte | ((byte) ((1 << offset) & 0xFF)));
         }
+
+        compressedImage.set(compressedImage.size() - 1, currByte);
 
         if (offset == 0 && bitIndex < bitString.length() - 1) {
             // Our bits have ran out! Better add a new one to the
             // array list and use it to store the additional bits in
             // the bit string.
-            compressedImage.set(compressedImage.size() - 1, currByte);
             compressedImage.add((byte) 0);
         }
     }
