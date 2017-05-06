@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="huffman_image_compression">
+    <output-path>$PROJECT_DIR$/jar</output-path>
+    <root id="archive" name="huffman_image_compression.jar">
+      <element id="library" level="project" name="forms_rt-7.0.3" />
+      <element id="module-output" name="huffman-image-compression_main" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
