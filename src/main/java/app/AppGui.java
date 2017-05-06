@@ -1,3 +1,5 @@
+package app;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -18,7 +20,7 @@ private JButton openCompressedButton;
 
 public AppGui(){
 	super("Huffman Image Compression");
-	setSize(1366,780);
+	setSize(800,600);
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setVisible(true);
 	setLayout(new GridLayout(1,2));
@@ -88,7 +90,8 @@ public AppGui(){
 		}
 }
 	public static void main(String [] args){
-		new AppGui();
+		//new AppGui();
+		new App();
 	}
 
 	
